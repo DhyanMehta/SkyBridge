@@ -1,0 +1,86 @@
+[
+  {
+    "pnr": "AB12CD",
+    "last_name": "Mehta",
+    "first_name": "Dhyan",
+    "email": "dhyan.mehta@example.com",
+    "phone": "+91-98765-43210",
+    "flight_id": "SK203",
+    "seat": "14A",
+    "class": "economy",
+    "frequent_flyer_tier": "gold",
+    "prior_rebookings": 0
+  },
+  {
+    "pnr": "XY99ZT",
+    "last_name": "Shah",
+    "first_name": "Neha",
+    "email": "neha.shah@example.com",
+    "phone": "+91-91234-56789",
+    "flight_id": "SK407",
+    "seat": "3C",
+    "class": "business",
+    "frequent_flyer_tier": "platinum",
+    "prior_rebookings": 1
+  },
+  {
+    "pnr": "QW56ER",
+    "last_name": "Patel",
+    "first_name": "Ravi",
+    "email": "ravi.patel@example.com",
+    "phone": "+91-87654-32109",
+    "flight_id": "SK550",
+    "seat": "22F",
+    "class": "economy",
+    "frequent_flyer_tier": null,
+    "prior_rebookings": 0
+  },
+  {
+    "pnr": "LM33NO",
+    "last_name": "Rao",
+    "first_name": "Sneha",
+    "email": "sneha.rao@example.com",
+    "phone": "+91-76543-21098",
+    "flight_id": "SK610",
+    "seat": "8B",
+    "class": "premium_economy",
+    "frequent_flyer_tier": "silver",
+    "prior_rebookings": 0
+  },
+  {
+    "pnr": "ZZ77XX",
+    "last_name": "Verma",
+    "first_name": "Anil",
+    "email": "anil.verma@example.com",
+    "phone": "+91-65432-10987",
+    "flight_id": "SK780",
+    "seat": "6A",
+    "class": "economy",
+    "frequent_flyer_tier": "gold",
+    "prior_rebookings": 3
+  },
+  {
+    "pnr": "RT44UV",
+    "last_name": "Iyer",
+    "first_name": "Kavya",
+    "email": "kavya.iyer@example.com",
+    "phone": "+91-54321-09876",
+    "flight_id": "SK521",
+    "seat": "12D",
+    "class": "economy",
+    "frequent_flyer_tier": null,
+    "prior_rebookings": 0
+  },
+  {
+    "pnr": "RF99XX",
+    "last_name": "Smith",
+    "first_name": "John",
+    "email": "john@example.com",
+    "phone": "+1-555-0123",
+    "flight_id": "SK203",
+    "seat": "10B",
+    "class": "economy",
+    "frequent_flyer_tier": null,
+    "prior_rebookings": 0
+  }
+]
