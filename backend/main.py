@@ -2,10 +2,11 @@
 
 Endpoints:
     GET /health
-    POST /resolve  { pnr, last_name }  ->  final SkyBridgeState as JSON
+    POST /resolve  { pnr, full_name }  ->  final SkyBridgeState as JSON
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -30,10 +31,18 @@ app.add_middleware(
 )
 
 
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"error": "Something went wrong. Please try again or talk to an agent."},
+    )
+
+
 # -- Request schema --------------------------------------------
 class ResolveRequest(BaseModel):
     pnr: str
-    last_name: str
+    full_name: str
 
 
 # -- GET /health -----------------------------------------------
@@ -47,7 +56,7 @@ def health_check():
 @app.post("/resolve")
 def resolve(req: ResolveRequest):
     """Run the SkyBridge disruption-recovery graph and return the result."""
-    result = run_skybridge_graph(pnr=req.pnr, last_name=req.last_name)
+    result = run_skybridge_graph(pnr=req.pnr, full_name=req.full_name)
     
     # If fetch_data_node set an error (e.g. passenger not found), return 404
     if result.get("passenger") is None and result.get("error"):

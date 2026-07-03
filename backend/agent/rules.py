@@ -71,7 +71,8 @@ def decide_action(
         )
 
     # -- Normal decision paths -------------------------------------
-    if passenger.get("pnr") in ["RT44UV", "RF99XX"]:
+    # Passenger explicitly requested a refund (flagged in booking record)
+    if passenger.get("refund_requested"):
         return ("REFUND", False, None)
 
     if disruption_type == "CANCELLED":

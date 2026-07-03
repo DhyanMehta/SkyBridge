@@ -53,16 +53,16 @@ def fetch_data_node(state: SkyBridgeState) -> dict:
     Sets error in action_result (not crash) if passenger not found.
     """
     pnr = state["pnr"]
-    last_name = state["last_name"]
+    full_name = state["full_name"]
 
-    passenger = mock_api.get_passenger(pnr, last_name)
+    passenger = mock_api.get_passenger(pnr, full_name)
     if passenger is None:
         return {
             "passenger": None,
             "flight": None,
             "error": (
-                f"Could not find a booking for PNR '{pnr}' with "
-                f"last name '{last_name}'. Please check your details and try again."
+                f"We could not find a booking for PNR '{pnr}' and "
+                f"full name '{full_name}'. Please check your details and try again."
             ),
         }
 

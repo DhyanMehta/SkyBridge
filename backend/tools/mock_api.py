@@ -2,7 +2,7 @@
 
 Functions:
     get_flight(flight_id)   -> dict | None
-    get_passenger(pnr, last_name) -> dict | None
+    get_passenger(pnr, full_name) -> dict | None
 """
 
 import json
@@ -31,20 +31,18 @@ def get_flight(flight_id: str) -> dict | None:
     return None
 
 
-def get_passenger(pnr: str, last_name: str) -> dict | None:
-    """Look up a passenger by PNR and verify last name (simulates auth).
+def get_passenger(pnr: str, full_name: str) -> dict | None:
+    """Look up a passenger by PNR and verify full name.
 
-    Returns the passenger dict if both PNR exists AND last_name matches
-    (case-insensitive). Returns None otherwise — either PNR not found or
-    last name mismatch.
+    Returns the passenger dict if both PNR exists AND full_name matches
+    (case-insensitive and trimmed). Otherwise returns None.
     """
     passengers = _load_json("passengers.json")
     for passenger in passengers:
-        if passenger["pnr"] == pnr:
-            # Case-insensitive last-name check simulates basic auth
-            if passenger["last_name"].lower() == last_name.lower():
+        if passenger["pnr"].upper() == pnr.upper():
+            if passenger["full_name"].strip().lower() == full_name.strip().lower():
                 return passenger
-            # PNR found but last name doesn't match → auth failure
+            # PNR found but full name doesn't match → auth failure
             return None
     # PNR not found
     return None

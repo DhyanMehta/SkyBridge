@@ -90,19 +90,19 @@ skybridge_graph = _build_graph()
 # ================================================================
 # Public entry point
 # ================================================================
-def run_skybridge_graph(pnr: str, last_name: str) -> dict:
+def run_skybridge_graph(pnr: str, full_name: str) -> dict:
     """Run the full disruption-recovery graph and return the final state.
 
     Args:
         pnr: Passenger Name Record code (e.g. 'AB12CD')
-        last_name: Passenger's last name for auth verification
+        full_name: Passenger's full name for auth verification
 
     Returns:
         The final SkyBridgeState dict after all nodes have executed.
     """
     initial_state: SkyBridgeState = {
         "pnr": pnr,
-        "last_name": last_name,
+        "full_name": full_name,
         "passenger": None,
         "flight": None,
         "disruption_type": None,

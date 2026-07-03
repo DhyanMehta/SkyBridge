@@ -10,7 +10,7 @@ from typing import TypedDict
 class SkyBridgeState(TypedDict, total=False):
     # ── Inputs ───────────────────────────────────────────────
     pnr: str
-    last_name: str
+    full_name: str
 
     # ── Fetched data ─────────────────────────────────────────
     passenger: dict | None

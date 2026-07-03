@@ -5,11 +5,11 @@ export default function StatusResult({ data, onBack }) {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'CANCELLED': return 'bg-red-100 text-red-800 border-red-200';
-      case 'DELAYED_LONG': return 'bg-orange-100 text-orange-800 border-orange-200';
-      case 'DELAYED_SHORT': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'ON_TIME': return 'bg-green-100 text-green-800 border-green-200';
-      default: return 'bg-slate-100 text-slate-800 border-slate-200';
+      case 'CANCELLED': return 'bg-status-cancelledBg text-status-cancelledText border-status-cancelledText/20';
+      case 'DELAYED_LONG': return 'bg-status-delayedLongBg text-status-delayedLongText border-status-delayedLongText/20';
+      case 'DELAYED_SHORT': return 'bg-status-delayedShortBg text-status-delayedShortText border-status-delayedShortText/20';
+      case 'ON_TIME': return 'bg-status-onTimeBg text-status-onTimeText border-status-onTimeText/20';
+      default: return 'bg-skybridge-bg text-skybridge-textMain border-skybridge-border';
     }
   };
 
@@ -19,40 +19,48 @@ export default function StatusResult({ data, onBack }) {
   };
 
   return (
-    <div className="max-w-3xl w-full mx-auto">
+    <div className="w-full">
       <button 
         onClick={onBack}
-        className="text-blue-600 hover:text-blue-800 text-sm font-medium mb-6 flex items-center"
+        className="text-skybridge-textMuted hover:text-skybridge-textMain text-sm font-medium mb-6 flex items-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-skybridge-navy rounded px-1 -ml-1"
       >
         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         Back to search
       </button>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded border border-skybridge-border overflow-hidden">
         
-        {/* Flight Header */}
-        <div className="p-6 sm:p-8 border-b border-slate-100">
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-            <div>
-              <div className="text-sm font-medium text-slate-500 mb-1">
-                {flight.airline} &bull; Flight {flight.flight_id}
+        {/* Digital Itinerary Header */}
+        <div className="p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+            <div className="flex-1">
+              <div className="flex items-center justify-between sm:justify-start gap-4 mb-2">
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-skybridge-navy">
+                  Flight {flight.flight_id}
+                </h2>
+                <span className="font-mono text-sm px-2 py-1 bg-skybridge-bg border border-skybridge-border rounded text-skybridge-textMain">
+                  Ref: {data.pnr}
+                </span>
               </div>
-              <h2 className="text-3xl font-bold text-slate-800">
-                {flight.origin} <span className="text-slate-400 font-light mx-2">&rarr;</span> {flight.destination}
-              </h2>
+              <div className="text-base text-skybridge-textMuted">
+                {flight.origin} <span className="mx-2">&rarr;</span> {flight.destination}
+              </div>
             </div>
             
-            <span className={`px-4 py-1.5 rounded-full text-sm font-bold border ${getStatusColor(disruption_type)}`}>
+            <span className={`px-3 py-1 rounded text-sm font-semibold border ${getStatusColor(disruption_type)} uppercase tracking-wider shrink-0`}>
               {getStatusLabel(disruption_type)}
             </span>
           </div>
           
-          {/* Summary Box */}
-          <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
-            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Agent Summary</h3>
-            <p className="text-slate-700 text-lg leading-relaxed">{summary}</p>
+          {/* Summary */}
+          <div className="mt-6 pt-6 border-t border-dashed border-skybridge-border">
+            <p className="text-skybridge-textMain text-base leading-relaxed">
+              {summary}
+            </p>
           </div>
         </div>
+
+        <div className="h-px w-full bg-skybridge-border"></div>
 
         {/* Action Panel Section */}
         <div className="p-6 sm:p-8 bg-white">
@@ -65,13 +73,13 @@ export default function StatusResult({ data, onBack }) {
         
         {/* Persistent Support Footer */}
         {decision !== 'ESCALATE' && (
-          <div className="bg-slate-50 p-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-slate-600 text-sm">
-              Need more help? Our customer support team is available 24/7.
+          <div className="bg-skybridge-bg p-6 border-t border-skybridge-border flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-skybridge-textMuted text-sm">
+              Need more help? Our team is available 24/7.
             </p>
             <button 
               onClick={() => alert("Connecting to human agent...")}
-              className="text-blue-600 hover:text-blue-800 font-medium text-sm whitespace-nowrap bg-white border border-blue-200 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors"
+              className="text-skybridge-navy hover:text-skybridge-textMain font-medium text-sm whitespace-nowrap bg-white border border-skybridge-border hover:bg-skybridge-bg px-4 py-2 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-skybridge-navy"
             >
               Talk to an Agent
             </button>

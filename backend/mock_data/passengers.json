@@ -1,7 +1,7 @@
 [
   {
     "pnr": "AB12CD",
-    "last_name": "Mehta",
+    "full_name": "Dhyan Mehta",
     "first_name": "Dhyan",
     "email": "dhyan.mehta@example.com",
     "phone": "+91-98765-43210",
@@ -13,7 +13,7 @@
   },
   {
     "pnr": "XY99ZT",
-    "last_name": "Shah",
+    "full_name": "Neha Shah",
     "first_name": "Neha",
     "email": "neha.shah@example.com",
     "phone": "+91-91234-56789",
@@ -25,7 +25,7 @@
   },
   {
     "pnr": "QW56ER",
-    "last_name": "Patel",
+    "full_name": "Ravi Patel",
     "first_name": "Ravi",
     "email": "ravi.patel@example.com",
     "phone": "+91-87654-32109",
@@ -37,7 +37,7 @@
   },
   {
     "pnr": "LM33NO",
-    "last_name": "Rao",
+    "full_name": "Sneha Rao",
     "first_name": "Sneha",
     "email": "sneha.rao@example.com",
     "phone": "+91-76543-21098",
@@ -49,7 +49,7 @@
   },
   {
     "pnr": "ZZ77XX",
-    "last_name": "Verma",
+    "full_name": "Anil Verma",
     "first_name": "Anil",
     "email": "anil.verma@example.com",
     "phone": "+91-65432-10987",
@@ -61,7 +61,7 @@
   },
   {
     "pnr": "RT44UV",
-    "last_name": "Iyer",
+    "full_name": "Kavya Iyer",
     "first_name": "Kavya",
     "email": "kavya.iyer@example.com",
     "phone": "+91-54321-09876",
@@ -69,11 +69,12 @@
     "seat": "12D",
     "class": "economy",
     "frequent_flyer_tier": null,
-    "prior_rebookings": 0
+    "prior_rebookings": 0,
+    "refund_requested": true
   },
   {
     "pnr": "RF99XX",
-    "last_name": "Smith",
+    "full_name": "John Smith",
     "first_name": "John",
     "email": "john@example.com",
     "phone": "+1-555-0123",
@@ -81,6 +82,7 @@
     "seat": "10B",
     "class": "economy",
     "frequent_flyer_tier": null,
-    "prior_rebookings": 0
+    "prior_rebookings": 0,
+    "refund_requested": true
   }
 ]

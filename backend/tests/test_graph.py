@@ -44,10 +44,10 @@ def main():
 
     for pax in passengers:
         pnr = pax["pnr"]
-        last_name = pax["last_name"]
-        name = f"{pax['first_name']} {pax['last_name']}"
-
-        result = run_skybridge_graph(pnr, last_name)
+        full_name = pax["full_name"]
+        name = pax["full_name"]
+        print(f"[{pnr}] {name} on {pax['flight_id']}")
+        result = run_skybridge_graph(pnr, full_name)
         results[pnr] = result
 
         print(
@@ -79,7 +79,7 @@ def main():
         # Build a state as if the graph had routed to refund_node
         mock_state = {
             "pnr": "RT44UV",
-            "last_name": "Iyer",
+            "full_name": "Kavya Iyer",
             "passenger": rt["passenger"],
             "flight": rt["flight"],
             "disruption_type": rt["disruption_type"],

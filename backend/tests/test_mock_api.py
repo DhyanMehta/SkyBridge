@@ -29,11 +29,11 @@ def main():
     print("=" * 60)
     print("TEST 2: get_passenger('AB12CD', 'Mehta')")
     print("=" * 60)
-    passenger = get_passenger("AB12CD", "Mehta")
+    passenger = get_passenger("AB12CD", "Dhyan Mehta")
     print(f"  Result: {passenger}")
-    assert passenger is not None, "FAIL: Expected a passenger dict, got None"
+    assert passenger is not None, "FAIL: Passenger not found for valid PNR and name."
     assert passenger["pnr"] == "AB12CD", f"FAIL: Wrong PNR: {passenger['pnr']}"
-    assert passenger["last_name"] == "Mehta", f"FAIL: Wrong last_name: {passenger['last_name']}"
+    assert passenger["full_name"] == "Dhyan Mehta", f"FAIL: Wrong full_name: {passenger['full_name']}"
     print("  [PASSED]\n")
 
     print("=" * 60)

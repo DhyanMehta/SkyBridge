@@ -25,8 +25,8 @@ def main():
     # 2. Escalated passenger (ZZ77XX)
     
     cases = [
-        {"pnr": "AB12CD", "last_name": "Mehta"},
-        {"pnr": "ZZ77XX", "last_name": "Verma"}
+        {"pnr": "AB12CD", "full_name": "Dhyan Mehta"},
+        {"pnr": "ZZ77XX", "full_name": "Anil Verma"}
     ]
     
     for case in cases:

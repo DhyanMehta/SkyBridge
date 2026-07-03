@@ -40,7 +40,7 @@ def main():
         disruption = classify_disruption(flight)
         decision, escalate, reason = decide_action(disruption, pax)
 
-        name = f"{pax['first_name']} {pax['last_name']}"
+        name = pax["full_name"]
         print(
             f"{pax['pnr']:<10} {name:<18} {flight['flight_id']:<8} "
             f"{flight['status']:<12} {flight.get('delay_minutes', 0):<6} "
