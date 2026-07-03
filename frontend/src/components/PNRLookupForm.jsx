@@ -12,7 +12,7 @@ export default function PNRLookupForm({ onResult }) {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/resolve', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/resolve`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

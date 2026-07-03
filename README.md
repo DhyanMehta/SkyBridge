@@ -93,6 +93,27 @@ The frontend runs at `http://localhost:5173` and the backend at `http://localhos
 > `ModuleNotFoundError: No module named 'backend'`. The correct command is
 > `uvicorn backend.main:app` from the **project root directory**.
 
+## Deployment (Vercel)
+
+SkyBridge is configured to deploy as two separate Vercel projects from this single repository.
+
+### Backend (Python Serverless)
+1. Import this repository into Vercel.
+2. Set the **Root Directory** to `backend`.
+3. In the Environment Variables settings, add:
+   - `GROQ_API_KEY`: Your real Groq API key.
+   - `ALLOWED_ORIGINS`: The deployed URL of your frontend (e.g., `https://your-frontend.vercel.app`).
+4. Deploy. Vercel will automatically use `api/index.py` as the serverless function entry point.
+
+### Frontend (React/Vite)
+1. Import this repository into Vercel as a **second, separate project**.
+2. Set the **Root Directory** to `frontend`.
+3. In the Environment Variables settings, add:
+   - `VITE_API_BASE_URL`: The deployed URL of your backend project (e.g., `https://your-backend.vercel.app`).
+4. Deploy. Vercel will automatically detect Vite and run `npm run build`.
+
+*(Note: Local development instructions are unchanged and still work exactly as before by using the local `.env` files).*
+
 ## Known Limitations
 
 | Item | Detail |
