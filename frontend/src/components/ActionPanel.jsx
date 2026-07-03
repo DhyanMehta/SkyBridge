@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import AgentHandoffModal from './AgentHandoffModal';
 
-export default function ActionPanel({ decision, actionResult, escalateReason }) {
+export default function ActionPanel({ decision, actionResult, escalateReason, pnr, fullName, disruptionType }) {
   const [confirmedPnr, setConfirmedPnr] = useState(null);
+  const [isAgentModalOpen, setIsAgentModalOpen] = useState(false);
 
   const handleConfirm = (flightId) => {
     // Generate a fake PNR like XYZ789
@@ -110,11 +112,17 @@ export default function ActionPanel({ decision, actionResult, escalateReason }) 
         )}
         
         <button 
-          onClick={() => alert("Connecting to human agent...")}
+          onClick={() => setIsAgentModalOpen(true)}
           className="bg-skybridge-navy hover:bg-[#152a45] text-white font-medium py-3 px-8 rounded transition-colors w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-skybridge-navy"
         >
           Talk to an Agent Now
         </button>
+
+        <AgentHandoffModal 
+          isOpen={isAgentModalOpen} 
+          onClose={() => setIsAgentModalOpen(false)} 
+          context={{ pnr, fullName, disruptionType, escalateReason }}
+        />
       </div>
     );
   }

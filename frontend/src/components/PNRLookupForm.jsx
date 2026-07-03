@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import AgentHandoffModal from './AgentHandoffModal';
 
 export default function PNRLookupForm({ onResult }) {
   const [pnr, setPnr] = useState('');
   const [fullName, setFullName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isAgentModalOpen, setIsAgentModalOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,7 +82,7 @@ export default function PNRLookupForm({ onResult }) {
             <button 
               type="button" 
               className="text-sm font-medium text-status-cancelledText hover:underline flex items-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-status-cancelledText rounded px-1 -ml-1"
-              onClick={() => alert("Connecting to human agent...")}
+              onClick={() => setIsAgentModalOpen(true)}
             >
               Talk to an Agent
             </button>
@@ -105,6 +107,12 @@ export default function PNRLookupForm({ onResult }) {
           )}
         </button>
       </form>
+      
+      <AgentHandoffModal 
+        isOpen={isAgentModalOpen} 
+        onClose={() => setIsAgentModalOpen(false)} 
+        context={{ pnr, fullName }}
+      />
     </div>
   );
 }

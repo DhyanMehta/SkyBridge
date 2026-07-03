@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import ActionPanel from './ActionPanel';
+import AgentHandoffModal from './AgentHandoffModal';
 
 export default function StatusResult({ data, onBack }) {
   const { flight, disruption_type, summary, decision, action_result, escalate_reason } = data;
+  const [isAgentModalOpen, setIsAgentModalOpen] = useState(false);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -67,7 +70,10 @@ export default function StatusResult({ data, onBack }) {
           <ActionPanel 
             decision={decision} 
             actionResult={action_result} 
-            escalateReason={escalate_reason} 
+            escalateReason={escalate_reason}
+            pnr={data.pnr}
+            fullName={data.full_name}
+            disruptionType={disruption_type}
           />
         </div>
         
@@ -78,7 +84,7 @@ export default function StatusResult({ data, onBack }) {
               Need more help? Our team is available 24/7.
             </p>
             <button 
-              onClick={() => alert("Connecting to human agent...")}
+              onClick={() => setIsAgentModalOpen(true)}
               className="text-skybridge-navy hover:text-skybridge-textMain font-medium text-sm whitespace-nowrap bg-white border border-skybridge-border hover:bg-skybridge-bg px-4 py-2 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-skybridge-navy"
             >
               Talk to an Agent
@@ -86,6 +92,12 @@ export default function StatusResult({ data, onBack }) {
           </div>
         )}
       </div>
+
+      <AgentHandoffModal 
+        isOpen={isAgentModalOpen} 
+        onClose={() => setIsAgentModalOpen(false)} 
+        context={{ pnr: data.pnr, fullName: data.full_name, disruptionType: disruption_type }}
+      />
     </div>
   );
 }
